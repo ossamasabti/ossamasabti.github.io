@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ossama Sabti | Data Science & AI Portfolio</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0A0A0A 0%, #0F0F1E 100%);
+      background-attachment: fixed;
+      color: #EDEDED;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.8rem;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(135deg, #FFFFFF 0%, #60A5FA 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      border-left: 4px solid #3B82F6;
+      padding-left: 1.2rem;
+    }
+
+    .section {
+      padding: 4rem 0;
+      border-bottom: 1px solid #1F1F1F;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: transparent;
+      border: 1.5px solid #3B82F6;
+      color: #3B82F6;
+      padding: 0.75rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.35s cubic-bezier(0.23, 1, 0.320, 1);
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #3B82F6;
+      transition: left 0.35s cubic-bezier(0.23, 1, 0.320, 1);
+      z-index: -1;
+    }
+
+    .btn:hover {
+      color: #0A0A0A;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(59,130,246,0.4);
+    }
+
+    .btn:hover::before {
+      left: 0;
+    }
+
+    .btn-primary {
+      background: #3B82F6;
+      color: #0A0A0A;
+    }
+
+    .btn-primary:hover {
+      background: #60A5FA;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(96,165,250,0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      animation: slideInUp 0.8s ease-out;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-profile {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-image-box {
+      width: 280px;
+      height: 280px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid #3B82F6;
+      box-shadow: 0 20px 60px rgba(59,130,246,0.2);
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      padding: 8px;
+      animation: floatIn 1s ease-out;
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .profile-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+
+    .profile-image-box:hover img {
+      transform: scale(1.05);
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #B0B0B0;
+      max-width: 650px;
+      margin: 1.5rem 0 2rem;
+      animation: slideInUp 1s ease-out;
+    }
+
+    .highlight {
+      color: #60A5FA;
+      font-weight: 600;
+    }
+
+    .contact-info-hero {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #AAA;
+    }
+
+    .contact-info-hero i {
+      margin-right: 8px;
+      color: #3B82F6;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category {
+      background: linear-gradient(135deg, #111111 0%, #0F0F1F 100%);
+      border-radius: 24px;
+      padding: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+      border: 1px solid rgba(59,130,246,0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .skill-category:hover {
+      border-color: #3B82F6;
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(59,130,246,0.2);
+    }
+
+    .skill-category h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: #1E1E1E;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .skill-tag i {
+      margin-right: 6px;
+      color: #3B82F6;
+    }
+
+    /* Cards */
+    .card {
+      background: linear-gradient(135deg, #111111 0%, #0F0F1F 100%);
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(59,130,246,0.1);
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      border-color: #3B82F6;
+      box-shadow: 0 12px 40px rgba(59,130,246,0.15);
+      transform: translateY(-6px);
+    }
+
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .card-sub {
+      color: #60A5FA;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .card-date {
+      color: #888;
+      font-size: 0.85rem;
+    }
+
+    .card-list {
+      margin-top: 1rem;
+      padding-left: 1.2rem;
+      color: #C0C0C0;
+    }
+
+    .card-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Two columns */
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    /* Education items */
+    .edu-item {
+      background: linear-gradient(135deg, #111111 0%, #0F0F1F 100%);
+      border-radius: 16px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      border-left: 3px solid #3B82F6;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .edu-item:hover {
+      transform: translateX(8px);
+      box-shadow: 0 12px 40px rgba(59,130,246,0.15);
+    }
+
+    .edu-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .edu-meta {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 5px;
+    }
+
+    .lang-badge {
+      background: #1E1E1E;
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      margin-right: 10px;
+      margin-top: 8px;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0 3rem;
+      color: #666;
+    }
+
+    .social-links a {
+      color: #CCC;
+      font-size: 1.6rem;
+      margin: 0 12px;
+      transition: color 0.2s;
+    }
+
+    .social-links a:hover {
+      color: #3B82F6;
+    }
+
+    @media (max-width: 768px) {
+      .two-columns {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+      .hero {
+        min-height: auto;
+        padding: 3rem 0;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .profile-image-box {
+        width: 220px;
+        height: 220px;
+      }
+    }
+  </style>
+  <!-- AOS animation library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <!-- Extra lightweight animations -->
+  <style>
+    /* Floating effect for avatar */
+    .floating{animation:float 4s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+    /* Subtle animated gradient overlay */
+    .hero::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(120deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));pointer-events:none;mix-blend-mode:overlay;animation:gradientShift 8s ease-in-out infinite}
+    @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    /* Highlighted name transition */
+    .hero .highlight{transition:all .5s ease;display:inline-block}
+    .card[data-aos]{will-change:transform,opacity}
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){.floating, .hero::after, .card[data-aos]{animation:none;transition:none}}
+  </style>
+  </head>
+<body>
+
+<div class="container">
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1 data-aos="fade-up">Ossama Sabti<br><span class="highlight">Mathematics, Data Analysis & Learning</span></h1>
+      <p data-aos="fade-up" data-aos-delay="100">Master's student passionate about machine learning, reinforcement learning, and building intelligent systems. I combine mathematical rigor with hands-on engineering to solve real-world problems.</p>
+      <div class="contact-info-hero">
+        <span><i class="fas fa-envelope"></i> ossamasabti6@gmail.com</span>
+        <span><i class="fas fa-phone-alt"></i> +212 760 196 199</span>
+        <span><i class="fas fa-map-marker-alt"></i> Settat, Morocco</span>
+        <span><i class="fab fa-github"></i> github.com/ossamasabti</span>
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="#contact" class="btn btn-primary" style="margin-right: 1rem;"><i class="fas fa-paper-plane"></i> Contact Me</a>
+        <a href="#projects" class="btn"><i class="fas fa-code"></i> View Projects</a>
+      </div>
+    </div>
+    <div class="hero-profile">
+      <div class="profile-image-box floating" data-aos="zoom-in">
+        <img src="profile.jpg" alt="Ossama Sabti Profile Picture">
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile / About -->
+  <section class="section" id="about">
+    <h2>Profile</h2>
+    <div class="two-columns">
+      <div class="card" style="background: linear-gradient(135deg, #0F0F1F 0%, #111111 100%);">
+        <h3 style="color: #60A5FA; margin-bottom: 1rem;"><i class="fas fa-user-graduate"></i> About Me</h3>
+        <p style="font-size: 1.05rem; line-height: 1.8;">Master's student in <strong>Mathematics, Data Analysis, and Learning</strong> at the Faculty of Sciences, Rabat. I bring a strong background in applied mathematics and optimization to the field of AI.</p>
+      </div>
+      <div class="card" style="background: linear-gradient(135deg, #111111 0%, #0F0F1F 100%);">
+        <h3 style="color: #60A5FA; margin-bottom: 1rem;"><i class="fas fa-target"></i> Mission</h3>
+        <p style="font-size: 1.05rem; line-height: 1.8;">Highly motivated to develop machine learning and reinforcement learning methods for modeling, prediction, and control of real-world dynamical systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section" id="skills">
+    <h2>Tech Stack & Tools</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3><i class="fab fa-python"></i> Data Science</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">Seaborn</span>
+          <span class="skill-tag">Scikit-learn</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3><i class="fas fa-brain"></i> Deep Learning</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">Keras</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">Vision Transformer</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3><i class="fas fa-code"></i> Dev & Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Django</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">LaTeX</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience + Education -->
+  <section class="section" id="experience">
+    <div class="two-columns">
+      <!-- Left: Professional Experience -->
+      <div>
+        <h2 style="border-left-color: #60A5FA;">Experience</h2>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">CAD to BIM Intern</span>
+            <span class="card-date">2026</span>
+          </div>
+          <div class="card-sub">BIMPioneers, Casablanca</div>
+          <ul class="card-list">
+            <li>Developed methods to automate conversion of 2D CAD plans into 3D BIM models.</li>
+            <li>Designed algorithms for detecting and classifying architectural elements from technical drawings.</li>
+            <li>Applied data analysis and machine learning to improve model accuracy and efficiency.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Organizing Committee Member – MathIcs-Club</span>
+            <span class="card-date">2026</span>
+          </div>
+          <div class="card-sub">MathIcs-Club</div>
+          <ul class="card-list">
+            <li><strong>Event Planning &amp; Logistics:</strong> Actively participated in organizing the national conference "Les Mathématiques au Cœur des Parcours et des Réussites" for the International Day of Mathematics.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right: Education -->
+      <div>
+        <h2 style="border-left-color: #60A5FA;">Education</h2>
+        <div class="edu-item">
+          <div class="edu-title">Master's in Mathematics, Data Analysis & Learning</div>
+          <div class="edu-meta">Faculty of Sciences, UM5 Rabat | 2025 – Present</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">Bachelor's in Applied Mathematics</div>
+          <div class="edu-meta">Faculty of Sciences, UCD El Jadida | 2024</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">CPGE (MP) - Mathematics & Physics</div>
+          <div class="edu-meta">Lycée Mohammed V, Casablanca | 2023</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">Baccalaureate in Mathematical Sciences B</div>
+          <div class="edu-meta">Lycée Bismilliah, Settat | 2020</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <h2>Featured Projects</h2>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">AI vs Human Art Classification System</span>
+        <span class="card-date">2025</span>
+      </div>
+      <div class="card-sub">Vision Transformer (ViT) · PyTorch</div>
+      <ul class="card-list">
+        <li>Built a ViT model to distinguish human-created art from AI-generated images.</li>
+        <li>Achieved <strong>84% accuracy</strong> on a balanced dataset of artwork.</li>
+        <li>Fine-tuned pretrained transformer for domain adaptation.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Employability of Young Graduates in Morocco</span>
+        <span class="card-date">2024</span>
+      </div>
+      <div class="card-sub">Data Science · Python (Pandas, Scikit-learn)</div>
+      <ul class="card-list">
+        <li>Statistical analysis and predictive modeling to identify employment barriers.</li>
+        <li>Cleaned and processed survey data, built classification models to predict hiring likelihood.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">E‑recruitment Platform</span>
+        <span class="card-date">2024</span>
+      </div>
+      <div class="card-sub">Django · PostgreSQL · Authentication</div>
+      <ul class="card-list">
+        <li>Full‑stack web application with job posting system and user authentication.</li>
+        <li>Implemented resume upload and application tracking features.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Languages & Interests -->
+  <section class="section" id="languages">
+    <div class="two-columns">
+      <div>
+        <h2><i class="fas fa-language"></i> Languages</h2>
+        <div>
+          <span class="lang-badge">Arabic (Native)</span>
+          <span class="lang-badge">French (C1)</span>
+          <span class="lang-badge">English (B2)</span>
+        </div>
+      </div>
+      <div>
+        <h2><i class="fas fa-certificate"></i> Core Interests</h2>
+        <div>
+          <span class="lang-badge">Reinforcement Learning</span>
+          <span class="lang-badge">Dynamical Systems</span>
+          <span class="lang-badge">Computer Vision</span>
+          <span class="lang-badge">Optimization</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <h2>Get in Touch</h2>
+    <div class="card" style="text-align: center; background: #0E0E0E;">
+      <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Open to internships, research collaborations, and data science opportunities.</p>
+      <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+        <a href="mailto:ossamasabti6@gmail.com" class="btn"><i class="fas fa-envelope"></i> ossamasabti6@gmail.com</a>
+        <a href="tel:+212760196199" class="btn"><i class="fas fa-phone-alt"></i> +212 760 196 199</a>
+        <a href="https://github.com/ossamasabti" class="btn" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="https://github.com/ossamasabti" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="mailto:ossamasabti6@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/oussama-sabti-05890a268/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <p style="margin-top: 1.5rem;">© 2026 Ossama Sabti — Mathematics, Data Science & AI</p>
+  </footer>
+</div>
+
+<!-- AOS and small interactive scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    AOS.init({duration:800, once:true});
+    // Simple rotating hero highlight (typed-like swap)
+    const phrases = ["Mathematics, Data Analysis & Learning","Machine Learning & Reinforcement Learning","Computer Vision & Optimization"];
+    let idx=0; const el = document.querySelector('.hero .highlight');
+    if(el){ setInterval(()=>{ el.textContent = phrases[idx%phrases.length]; idx++; }, 3200); }
+    // Enable smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click', e=>{ e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'}); }); });
+  });
+</script>
+</body>
+</html>
