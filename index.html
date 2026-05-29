@@ -14,6 +14,7 @@
       box-sizing: border-box;
     }
 
+    /* Light/Dark Mode Variables */
     :root {
       --blue: #3B82F6;
       --blue-light: #60A5FA;
@@ -26,6 +27,16 @@
       --text: #E8EBF4;
       --muted: #6B7899;
       --radius: 20px;
+      --transition: background 0.3s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    body.light {
+      --bg: #f0f4f8;
+      --bg2: #e2e8f0;
+      --surface: rgba(255, 255, 255, 0.85);
+      --border: rgba(59, 130, 246, 0.25);
+      --text: #1a202c;
+      --muted: #4a5568;
     }
 
     body {
@@ -36,6 +47,7 @@
       scroll-behavior: smooth;
       overflow-x: hidden;
       cursor: none;
+      transition: var(--transition);
     }
 
     /* Custom cursor from index4 */
@@ -72,7 +84,8 @@
       opacity: .7;
     }
 
-    /* Mesh background */
+    /* Mesh background - adjust opacity for light mode */
+    body.light .mesh-blob { opacity: 0.04; }
     #mesh-bg {
       position: fixed;
       inset: 0;
@@ -86,6 +99,7 @@
       filter: blur(90px);
       opacity: .08;
       animation: drift 18s ease-in-out infinite;
+      transition: opacity 0.3s ease;
     }
     .mb1 { width: 600px; height: 600px; background: var(--blue); top: -100px; left: -150px; animation-delay: 0s; }
     .mb2 { width: 500px; height: 500px; background: var(--violet); bottom: -100px; right: -100px; animation-delay: -6s; }
@@ -119,7 +133,7 @@
       transition: all .4s;
     }
     nav.scrolled {
-      background: rgba(6, 8, 16, .88);
+      background: var(--surface);
       backdrop-filter: blur(24px);
       padding: .7rem 0;
       box-shadow: 0 1px 0 var(--border);
@@ -141,6 +155,11 @@
       background-clip: text;
       color: transparent;
       text-decoration: none;
+    }
+    body.light .nav-logo {
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
     }
     .nav-links {
       display: flex;
@@ -188,6 +207,27 @@
     .nav-cta:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(59, 130, 246, .45);
+    }
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--blue-light);
+      font-size: 1.2rem;
+      margin-left: 0.5rem;
+    }
+    .theme-toggle:hover {
+      transform: scale(1.05);
+      border-color: var(--blue);
+      box-shadow: 0 0 12px rgba(59,130,246,0.3);
     }
     .hamburger {
       display: none;
@@ -277,6 +317,11 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+    }
+    body.light .name-line {
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
     }
     .glitch {
       position: relative;
@@ -411,9 +456,7 @@
       inset: 3px;
       border-radius: 50%;
       background: var(--bg);
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+      transition: background 0.3s ease;
     }
     .profile-img {
       position: relative;
@@ -493,7 +536,7 @@
       padding: 6rem 0;
     }
     section + section {
-      border-top: 1px solid rgba(59, 130, 246, .07);
+      border-top: 1px solid var(--border);
     }
 
     /* Section headers */
@@ -687,6 +730,7 @@
       background: linear-gradient(135deg, var(--blue), var(--violet));
       border: 2px solid var(--bg);
       box-shadow: 0 0 12px var(--blue);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
     .t-date {
       font-size: .73rem;
@@ -709,7 +753,7 @@
     }
     .t-desc {
       font-size: .85rem;
-      color: #7a8bac;
+      color: var(--muted);
       line-height: 1.65;
       padding-left: 1rem;
     }
@@ -800,7 +844,7 @@
     }
     footer {
       padding: 2.5rem 0;
-      border-top: 1px solid rgba(59, 130, 246, .08);
+      border-top: 1px solid var(--border);
       text-align: center;
     }
     .social-links {
@@ -832,7 +876,8 @@
         position: fixed;
         inset: 0;
         top: 60px;
-        background: rgba(6, 8, 16, .97);
+        background: var(--surface);
+        backdrop-filter: blur(24px);
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -842,7 +887,7 @@
         transition: opacity .3s;
       }
       .nav-links.open { opacity: 1; pointer-events: all; }
-      .nav-cta { display: none; }
+      .nav-cta, .theme-toggle { display: none; }
       .hero-inner { flex-direction: column; gap: 2.5rem; }
       .rings-wrap { width: 220px; height: 220px; }
       .profile-img { width: 188px; height: 188px; }
@@ -861,7 +906,7 @@
 
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="#home" class="nav-logo">OS</a>
+    <a href="#home" class="nav-logo">OSSAMA</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about" data-nav="about">About</a></li>
       <li><a href="#skills" data-nav="skills">Skills</a></li>
@@ -870,7 +915,9 @@
       <li><a href="#research" data-nav="research">Research</a></li>
       <li><a href="#contact" data-nav="contact">Contact</a></li>
     </ul>
-    
+    <div class="theme-toggle" id="themeToggle">
+      <i class="fas fa-sun" id="themeIcon"></i>
+    </div>
     <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -901,12 +948,12 @@
 <section id="experience"><div class="container"><div class="s-tag">Background</div><h2 class="s-title rev from-bottom">Experience & Education</h2><div class="timeline-grid"><div class="rev from-left"><h3 class="col-label"><i class="fas fa-briefcase"></i> Work</h3><div class="timeline"><div class="t-item"><div class="t-dot"></div><div class="t-date">2026</div><div class="t-title">CAD to BIM Intern</div><div class="t-sub">BIMPioneers, Casablanca</div><ul class="t-desc"><li>ML detection, automation of 2D to 3D conversion, improved accuracy.</li></ul></div><div class="t-item"><div class="t-dot"></div><div class="t-date">2026</div><div class="t-title">Organizer – MathIcs-Club</div><div class="t-sub">National Math Conference</div><ul class="t-desc"><li>Led logistics for International Day of Mathematics event (200+ attendees).</li></ul></div></div></div><div class="rev from-right"><h3 class="col-label"><i class="fas fa-graduation-cap"></i> Education</h3><div class="timeline"><div class="t-item"><div class="t-dot"></div><div class="t-date">2025 – Present</div><div class="t-title">Master's in Mathematics, Data Analysis & Learning</div><div class="t-sub">UM5 Rabat</div></div><div class="t-item"><div class="t-dot"></div><div class="t-date">2024</div><div class="t-title">Bachelor's in Applied Mathematics</div><div class="t-sub">UCD El Jadida</div></div><div class="t-item"><div class="t-dot"></div><div class="t-date">2023</div><div class="t-title">CPGE (MP) Mathematics & Physics</div><div class="t-sub">Lycée Mohammed V, Casablanca</div></div><div class="t-item"><div class="t-dot"></div><div class="t-date">2020</div><div class="t-title">Baccalaureate Mathematical Sciences B</div><div class="t-sub">Lycée Bismilliah, Settat</div></div></div></div></div></div></section>
 
 <!-- Projects -->
-<section id="projects"><div class="container"><div class="s-tag">Portfolio</div><h2 class="s-title rev from-bottom">Featured Projects</h2><div class="projects-grid"><div class="project-card rev from-rotate"><div class="shine"></div><div class="proj-year">2025</div><div class="proj-title">AI vs Human Art Classification</div><div class="proj-stack">Vision Transformer · PyTorch</div><ul class="proj-list"><li>84% accuracy distinguishing human art from AI</li><li>Fine-tuned pretrained transformer for domain adaptation</li></ul></div><div class="project-card rev from-rotate"><div class="shine"></div><div class="proj-year">2025</div><div class="proj-title">Employability of Young Graduates</div><div class="proj-stack">Scikit-learn · Pandas</div><ul class="proj-list"><li>Predictive modeling & employment barrier analysis</li><li>Survey data cleaning and classification to predict hiring likelihood</li></ul></div><div class="project-card rev from-rotate"><div class="shine"></div><div class="proj-year">2026</div><div class="proj-title">E‑recruitment Platform</div><div class="proj-stack">Django · MySQL</div><ul class="proj-list"><li>Full-stack job portal with resume upload and tracking</li><li>Authentication system and admin dashboard</li></ul></div></div></div></section>
+<section id="projects"><div class="container"><div class="s-tag">Portfolio</div><h2 class="s-title rev from-bottom">Featured Projects</h2><div class="projects-grid"><div class="project-card rev from-rotate"><div class="shine"></div><div class="proj-year">2025</div><div class="proj-title">AI vs Human Art Classification</div><div class="proj-stack">Vision Transformer · PyTorch</div><ul class="proj-list"><li>84% accuracy distinguishing human art from AI</li><li>Fine-tuned pretrained transformer for domain adaptation</li></ul></div><div class="project-card rev from-rotate"><div class="shine"></div><div class="proj-year">2024</div><div class="proj-title">Employability of Young Graduates</div><div class="proj-stack">Scikit-learn · Pandas</div><ul class="proj-list"><li>Predictive modeling & employment barrier analysis</li><li>Survey data cleaning and classification to predict hiring likelihood</li></ul></div><div class="project-card rev from-rotate"><div class="shine"></div><div class="proj-year">2024</div><div class="proj-title">E‑recruitment Platform</div><div class="proj-stack">Django · PostgreSQL</div><ul class="proj-list"><li>Full-stack job portal with resume upload and tracking</li><li>Authentication system and admin dashboard</li></ul></div></div></div></section>
 
 <!-- Research (TopoAE++) -->
 <section id="research"><div class="container"><div class="s-tag">Academic</div><h2 class="s-title rev from-bottom">Research Presentations</h2><div class="projects-grid"><div class="project-card rev from-scale" style="grid-column:1/-1; max-width:760px;"><div class="shine"></div><div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:0.8rem;"><div class="proj-year" style="margin-bottom:0">2025</div><span style="background:rgba(167,139,250,0.15); border:1px solid rgba(167,139,250,0.35); color:#a78bfa; font-size:0.7rem; font-weight:700; padding:0.2rem 0.75rem; border-radius:30px;">Seminar Presentation</span></div><div class="proj-title">Topological Autoencoders++ : Fast and Accurate Cycle-Aware Dimensionality Reduction</div><div class="proj-stack" style="color:#a78bfa">Persistent Homology · Topological Data Analysis · Autoencoders · PyTorch</div><p style="font-size:0.88rem; color:var(--muted); margin:1rem 0;">Presented a critical analysis of the paper by Clémot, Digne & Tierny (arXiv:2502.20215) in the Master MADA seminar at UM5 Rabat. The work extends Topological Autoencoders (TopoAE) to faithfully preserve 1-dimensional topological cycles.</p><div><span class="tag">Persistent Homology</span><span class="tag">Dimensionality Reduction</span><span class="tag">Autoencoder</span><span class="tag">Topological Data Analysis</span><a href="https://arxiv.org/abs/2502.20215" target="_blank" style="margin-left:1rem; color:var(--blue-light); text-decoration:none;">arXiv:2502.20215 <i class="fas fa-external-link-alt"></i></a></div></div></div></div></section>
 
-<!-- Languages only - Interests section removed -->
+<!-- Languages only -->
 <section id="languages"><div class="container"><div style="max-width: 600px; margin: 0 auto;"><div class="s-tag">Languages</div><h2 class="s-title" style="margin-bottom:1.5rem">Languages</h2><div><span class="lang-badge">Arabic (Native)</span><span class="lang-badge">French (C1)</span><span class="lang-badge">English (B2)</span></div></div></div></section>
 
 <!-- Contact -->
@@ -915,6 +962,30 @@
 <footer><div class="social-links"><a href="https://github.com/ossamasabti" class="social-link"><i class="fab fa-github"></i></a><a href="mailto:ossamasabti6@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a><a href="https://www.linkedin.com/in/oussama-sabti-05890a268/" class="social-link"><i class="fab fa-linkedin"></i></a></div><p>© 2026 Ossama Sabti — Mathematics, Data Science</p></footer>
 
 <script>
+  // Theme Toggle Logic
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  
+  // Check for saved theme preference
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    themeIcon.classList.remove('fa-sun');
+    themeIcon.classList.add('fa-moon');
+  }
+  
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    if (document.body.classList.contains('light')) {
+      localStorage.setItem('theme', 'light');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+    } else {
+      localStorage.setItem('theme', 'dark');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    }
+  });
+
   // custom cursor
   const cdot = document.getElementById('cdot'), cring = document.getElementById('cring');
   let mx = 0, my = 0, rx = 0, ry = 0;
