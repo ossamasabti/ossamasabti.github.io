@@ -50,7 +50,7 @@
       transition: var(--transition);
     }
 
-    /* Custom cursor from index4 */
+    /* Custom cursor */
     #cdot {
       width: 7px;
       height: 7px;
@@ -84,7 +84,7 @@
       opacity: .7;
     }
 
-    /* Mesh background - adjust opacity for light mode */
+    /* Mesh background */
     body.light .mesh-blob { opacity: 0.04; }
     #mesh-bg {
       position: fixed;
@@ -208,7 +208,6 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(59, 130, 246, .45);
     }
-    /* Theme Toggle Button */
     .theme-toggle {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -304,63 +303,25 @@
       0%,100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.5); opacity: .6; }
     }
+    /* Title with solid single color */
     h1.hero-name {
       font-family: 'Syne', sans-serif;
       font-size: clamp(3rem, 5.5vw, 5rem);
       font-weight: 800;
       line-height: 1.05;
       letter-spacing: -.04em;
+      color: var(--text);
     }
     .name-line {
       display: block;
-      background: linear-gradient(135deg, #fff 30%, var(--blue-light) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
     }
-    body.light .name-line {
-      background: linear-gradient(135deg, var(--blue), var(--violet));
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
+    /* Removed glitch effect and gradient from title for single simple color */
     .glitch {
       position: relative;
       display: inline-block;
     }
     .glitch::before, .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: inherit;
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-    .glitch::before {
-      color: #60A5FA;
-      clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-      animation: glitch1 4s infinite;
-      opacity: .7;
-    }
-    .glitch::after {
-      color: #a78bfa;
-      clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-      animation: glitch2 4s infinite;
-      opacity: .7;
-    }
-    @keyframes glitch1 {
-      0%,90%,100% { transform: translate(0); }
-      92% { transform: translate(-3px,1px); }
-      94% { transform: translate(3px,-1px); }
-      96% { transform: translate(-2px,2px); }
-    }
-    @keyframes glitch2 {
-      0%,90%,100% { transform: translate(0); }
-      91% { transform: translate(3px,-2px); }
-      93% { transform: translate(-3px,1px); }
-      95% { transform: translate(2px,-1px); }
+      display: none; /* Completely disable glitch pseudo-elements */
     }
     .hero-role {
       font-family: 'Syne', sans-serif;
@@ -628,6 +589,19 @@
       color: var(--muted);
       font-size: .95rem;
       line-height: 1.75;
+    }
+
+    /* About grid - stacked on mobile, side by side on desktop */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
     }
 
     /* Skills */
@@ -928,7 +902,9 @@
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge"><span class="badge-dot"></span> Available for Opportunities</div>
-      <h1 class="hero-name"><span class="name-line glitch" data-text="Ossama">Ossama</span> <span class="name-line glitch" data-text="Sabti">Sabti</span></h1>
+      <h1 class="hero-name">
+        <span class="name-line">Ossama Sabti</span>
+      </h1>
       <p class="hero-role"><span id="typed-text"></span><span class="cursor-blink"></span></p>
       <p class="hero-desc">Passionate about machine learning, reinforcement learning, and building intelligent systems. I combine mathematical rigor with hands-on engineering to solve real-world problems.</p>
       <div class="hero-ctas"><a href="#contact" class="btn btn-fill"><i class="fas fa-paper-plane"></i> Contact Me</a><a href="#projects" class="btn btn-outline"><i class="fas fa-code"></i> View Projects</a></div>
@@ -938,8 +914,8 @@
   </div>
 </section>
 
-<!-- About -->
-<section id="about"><div class="container"><div class="s-tag">Profile</div><h2 class="s-title rev from-bottom">About Me</h2><div class="skills-grid" style="grid-template-columns:1fr 1fr"><div class="glass-card rev from-left"><div class="shine"></div><div class="card-icon"><i class="fas fa-user-graduate"></i></div><h3>Background</h3><p>Master's student in <strong style="color:var(--text)">Mathematics, Data Analysis, and Learning</strong> at the Faculty of Sciences, Rabat (UM5). I bring a strong background in applied mathematics, optimization, and statistical learning to the field of AI.</p></div><div class="glass-card rev from-right"><div class="shine"></div><div class="card-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Research Direction</h3><p>Highly motivated to develop machine learning and reinforcement learning methods for modeling, prediction, and control of real-world dynamical systems.</p></div></div></div></section>
+<!-- About - using about-grid for stacked on mobile -->
+<section id="about"><div class="container"><div class="s-tag">Profile</div><h2 class="s-title rev from-bottom">About Me</h2><div class="about-grid"><div class="glass-card rev from-left"><div class="shine"></div><div class="card-icon"><i class="fas fa-user-graduate"></i></div><h3>Background</h3><p>Master's student in <strong style="color:var(--text)">Mathematics, Data Analysis, and Learning</strong> at the Faculty of Sciences, Rabat (UM5). I bring a strong background in applied mathematics, optimization, and statistical learning to the field of AI.</p></div><div class="glass-card rev from-right"><div class="shine"></div><div class="card-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Research Direction</h3><p>Highly motivated to develop machine learning and reinforcement learning methods for modeling, prediction, and control of real-world dynamical systems.</p></div></div></div></section>
 
 <!-- Skills -->
 <section id="skills"><div class="container"><div class="s-tag">Tech Stack</div><h2 class="s-title rev from-bottom">Tools & Expertise</h2><div class="skills-grid"><div class="skill-card rev from-left"><div class="shine"></div><h3><i class="fab fa-python"></i> Data Science</h3><div><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Scikit-learn</span></div></div><div class="skill-card rev from-bottom"><div class="shine"></div><h3><i class="fas fa-brain"></i> Deep Learning</h3><div><span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">PyTorch</span><span class="tag">Vision Transformer</span></div></div><div class="skill-card rev from-right"><div class="shine"></div><h3><i class="fas fa-code"></i> Dev & Tools</h3><div><span class="tag">Django</span><span class="tag">SQL</span><span class="tag">Git</span><span class="tag">LaTeX</span></div></div></div></div></section>
@@ -966,7 +942,6 @@
   const themeToggle = document.getElementById('themeToggle');
   const themeIcon = document.getElementById('themeIcon');
   
-  // Check for saved theme preference
   if (localStorage.getItem('theme') === 'light') {
     document.body.classList.add('light');
     themeIcon.classList.remove('fa-sun');
@@ -1005,11 +980,21 @@
   // active spy
   const spy = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) document.querySelectorAll('.nav-links a[data-nav]').forEach(a => a.classList.toggle('active', a.dataset.nav === e.target.id)); }), { rootMargin: '-40% 0px -55% 0px' });
   document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
-  // typed text
-  const phrases = ["Master's student in Mathematics, Data Analysis, and Learning"];
-  let pi = 0, ci = 0, del = false; const tel = document.getElementById('typed-text');
-  function typeLoop() { const p = phrases[pi % phrases.length]; if (!del) { tel.textContent = p.slice(0, ++ci); if (ci === p.length) { del = true; setTimeout(typeLoop, 1800); return; } } else { tel.textContent = p.slice(0, --ci); if (!ci) { del = false; pi++; setTimeout(typeLoop, 350); return; } } setTimeout(typeLoop, del ? 52 : 78); }
-  typeLoop();
+  // typed text - single static line
+  const targetText = "Master's student in Mathematics, Data Analysis, and Learning";
+  let idx = 0;
+  const tel = document.getElementById('typed-text');
+  function typeOnce() {
+    if (idx <= targetText.length) {
+      tel.textContent = targetText.slice(0, idx);
+      idx++;
+      setTimeout(typeOnce, 45);
+    } else {
+      // fade cursor after done
+      setTimeout(() => { document.querySelector('.cursor-blink').style.opacity = '0'; }, 2000);
+    }
+  }
+  typeOnce();
   // reveal
   const revObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } }), { threshold: .1 });
   document.querySelectorAll('.rev').forEach(el => revObs.observe(el));
